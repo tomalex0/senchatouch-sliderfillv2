@@ -138,12 +138,17 @@ Ext.setup({
                                     formBase.user = Ext.ModelMgr.create({
                                         
                                         'single_slider': 10,
-                                        'multiple_slider': [20, 40],
+                                        'multiple_slider': [20, 40,65],
                                         'height': 20
                                     }, 'User');
                                 }
-
-                                form.loadModel(formBase.user);
+                                form.setRecord(formBase.user);
+                            }
+                        },
+                        {
+                            text: 'Change Multiple',
+                            handler: function() {
+                                form.getFields().multiple_slider.setValues([20,40,70]);
                             }
                         },
                         {xtype: 'spacer'},

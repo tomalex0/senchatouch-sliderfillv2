@@ -1,3 +1,30 @@
+
+
+
+Ext.define('Override.slider.Slider', {
+    override : 'Ext.slider.Slider',
+
+    updateValue : function(newValue, oldValue) {
+        var thumbs = this.getThumbs(),
+            ln = newValue.length,
+            i;
+
+        this.setThumbsCount(ln);
+
+        for (i = 0; i < ln; i++) {
+            thumbs[i].getDraggable().setExtraConstraint(null)
+                                    .setOffset(newValue[i] * this.offsetValueRatio);
+	    this.fireEvent('change', this,thumbs[i],newValue, oldValue,i);// fire change event based on each thumb
+        }
+
+        for (i = 0; i < ln; i++) {
+	    
+            this.refreshThumbConstraints(thumbs[i]);
+        }
+	
+    }
+});
+
 Ext.define('Ext.plugin.SliderFill', {
     extend: 'Ext.util.Observable',
     alias: 'plugin.sliderfill',
@@ -18,7 +45,10 @@ Ext.define('Ext.plugin.SliderFill', {
 	cmp.on('painted',function(slider){
 	    me.onSliderPainted(slider);
 	});
-
+	
+	cmp.on('updatedata',function(){
+	    console.log("updatedata");
+	});
 	cmp.on('change',function(slider,thumb){
 	    console.log("change")
             //console.log(slider);
