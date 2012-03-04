@@ -35,10 +35,9 @@ Ext.define('Ext.plugin.SliderFill', {
         console.log("init");
         console.log(cmp);
         var me = this,
-            fillclass = ['x-slider-fill1','x-slider-fill2','x-slider-fill3','x-slider-fill4']
-            sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',cmp.element.dom)[0]),
+            sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',cmp.element.dom)[0]);
             thumbarr = cmp.getComponent().getThumbs();
-	console.log(me.getFillCls());
+	console.log(thumbarr,"thumbarr");
 	
 	cmp.on('painted',function(slider){
 	    me.onSliderPainted(slider);
@@ -51,12 +50,12 @@ Ext.define('Ext.plugin.SliderFill', {
 	    console.log("change")
             //console.log(slider);
             console.log(thumb);
-            var thumbarr = slider.getComponent().getThumbs();
-            console.log(thumbarr.indexOf(thumb));
+            var thumbarr_val = slider.getComponent().getThumbs();
+            console.log(thumbarr_val.indexOf(thumb));
             //thumb.fireEvent('dragend',thumb);
            
 	   Ext.defer(function(){
-		me.thumbAdjust(slider,thumb,thumbarr.indexOf(thumb));
+		me.thumbAdjust(slider,thumb,thumbarr_val.indexOf(thumb));
 	    },200);
 	});
         
@@ -73,8 +72,7 @@ Ext.define('Ext.plugin.SliderFill', {
     onSliderPainted : function(slider){
         var me = this,
             thumbarr = slider.getComponent().getThumbs(),
-            fillclass = ['x-slider-fill1','x-slider-fill2','x-slider-fill3','x-slider-fill4'],
-	    fillCls  = me.getFillCls(),
+            fillCls  = me.getFillCls(),
             sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',slider.element.dom)[0]);
 	    console.log(me);
 	    console.log(fillCls,"fillCls")
@@ -113,6 +111,7 @@ Ext.define('Ext.plugin.SliderFill', {
     thumbAdjust : function(slider,thumb,i){
 	console.log(thumb)
         var fill_space_id = "fill-"+thumb.getId(),
+	    thumbarr = slider.getComponent().getThumbs(),
             width  = thumb.translatableBehavior.translatable.x;
                 console.log(width);
                 if(i == 0){
