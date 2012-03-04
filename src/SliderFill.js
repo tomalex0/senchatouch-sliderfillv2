@@ -28,9 +28,8 @@ Ext.define('Override.slider.Slider', {
 Ext.define('Ext.plugin.SliderFill', {
     extend: 'Ext.util.Observable',
     alias: 'plugin.sliderfill',
-    initialize: function() {
-        this.callParent();
-        console.log("initialize");
+    config :{
+	fillCls : []
     },
     init: function(cmp) {
         console.log("init");
@@ -39,9 +38,8 @@ Ext.define('Ext.plugin.SliderFill', {
             fillclass = ['x-slider-fill1','x-slider-fill2','x-slider-fill3','x-slider-fill4']
             sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',cmp.element.dom)[0]),
             thumbarr = cmp.getComponent().getThumbs();
-	console.log(me);
+	console.log(me.getFillCls());
 	
-       
 	cmp.on('painted',function(slider){
 	    me.onSliderPainted(slider);
 	});
@@ -70,16 +68,21 @@ Ext.define('Ext.plugin.SliderFill', {
 	    },100);
 	});
 	
+	
     },
     onSliderPainted : function(slider){
         var me = this,
             thumbarr = slider.getComponent().getThumbs(),
             fillclass = ['x-slider-fill1','x-slider-fill2','x-slider-fill3','x-slider-fill4'],
+	    fillCls  = me.getFillCls(),
             sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',slider.element.dom)[0]);
+	    console.log(me);
+	    console.log(fillCls,"fillCls")
             Ext.each(thumbarr,function(item,i){
 		console.log(item.translatableBehavior.translatable)
                 var fill_space_id = "fill-"+item.id, width = item.translatableBehavior.translatable.x;
-                Ext.DomHelper.append(sliderinner, {tag: 'div', id: fill_space_id, cls: 'x-slider-fill '+fillclass[i] });
+		console.log(fillCls[i],"blasdas" )
+                Ext.DomHelper.append(sliderinner, {tag: 'div', id: fill_space_id, cls: 'x-slider-fill '+fillCls[i] });
                 if(i > 0){
                     var prev_thumb =  slider.getComponent().getThumb(i-1),
                         prev_width =  prev_thumb.translatableBehavior.translatable.x,

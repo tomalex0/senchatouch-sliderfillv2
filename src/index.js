@@ -104,7 +104,10 @@ Ext.setup({
                         {
                             xtype: 'sliderfield',
                             name: 'single_slider',
-                            plugins: 'sliderfill',
+                            plugins: [{
+                                xclass : 'Ext.plugin.SliderFill',
+                                fillCls : ['x-slider-fill4']
+                            }],
                             value: 60
                         }
                     ]
@@ -116,7 +119,10 @@ Ext.setup({
                         {
                             xtype: 'sliderfield',
                             name: 'multiple_slider',
-                            plugins: 'sliderfill',
+                            plugins: [{
+                                xclass : 'Ext.plugin.SliderFill',
+                                fillCls : ['x-slider-fill3','x-slider-fill1','x-slider-fill2']
+                            }],
                             values: [40,60, 90]
                         }
                     ]
