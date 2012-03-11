@@ -47,16 +47,11 @@ Ext.define('Ext.plugin.SliderFill', {
 	    console.log("updatedata");
 	});
 	cmp.on('change',function(slider,thumb){
-	    console.log("change")
-            //console.log(slider);
-            console.log(thumb);
-            var thumbarr_val = slider.getComponent().getThumbs();
-            console.log(thumbarr_val.indexOf(thumb));
-            //thumb.fireEvent('dragend',thumb);
-           
-	   Ext.defer(function(){
+	    var thumbarr_val = slider.getComponent().getThumbs();
+            
+	    Ext.defer(function(){
 		me.thumbAdjust(slider,thumb,thumbarr_val.indexOf(thumb));
-	    },200);
+	     },200);
 	});
         
     
@@ -75,38 +70,27 @@ Ext.define('Ext.plugin.SliderFill', {
             fillCls  = me.getFillCls(),
             sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',slider.element.dom)[0]);
 	    console.log(me);
-	    console.log(fillCls,"fillCls")
-            Ext.each(thumbarr,function(item,i){
-		console.log(item.translatableBehavior.translatable)
-                var fill_space_id = "fill-"+item.id, width = item.translatableBehavior.translatable.x;
-		console.log(fillCls[i],"blasdas" )
-                Ext.DomHelper.append(sliderinner, {tag: 'div', id: fill_space_id, cls: 'x-slider-fill '+fillCls[i] });
-                if(i > 0){
-                    var prev_thumb =  slider.getComponent().getThumb(i-1),
-                        prev_width =  prev_thumb.translatableBehavior.translatable.x,
-                        totalwidth = width - prev_width;
-                    Ext.get(fill_space_id).setStyle({width : Math.round(totalwidth)+'px',left : prev_width+'px'});
-                } else {
-                    Ext.get(fill_space_id).setStyle({width : Math.round(width)+'px'});
-                }
-            });
-        
-        Ext.each(thumbarr,function(item,i){
-	    item.on('dragstart',function(thumb){
-		console.log("dragstart")
-                me.thumbAdjust(slider,thumb,i);
-            });
-	    
-	    item.on('drag',function(thumb){
-		console.log("drag")
-                //me.thumbAdjust(slider,thumb,i);
-            });
-	    
-            item.on('dragend',function(thumb){
-		console.log("dragend")
-                //me.thumbAdjust(slider,thumb,i);
-            });
-        });
+	console.log(fillCls,"fillCls")
+	Ext.each(thumbarr,function(item,i){
+	    console.log(item.translatableBehavior.translatable)
+	    var fill_space_id = "fill-"+item.id, width = item.translatableBehavior.translatable.x;
+	    console.log(fillCls[i],"blasdas" )
+	    Ext.DomHelper.append(sliderinner, {tag: 'div', id: fill_space_id, cls: 'x-slider-fill '+fillCls[i] });
+	    if(i > 0){
+		var prev_thumb =  slider.getComponent().getThumb(i-1),
+		    prev_width =  prev_thumb.translatableBehavior.translatable.x,
+		    totalwidth = width - prev_width;
+		Ext.get(fill_space_id).setStyle({width : Math.round(totalwidth)+'px',left : prev_width+'px'});
+	    } else {
+		Ext.get(fill_space_id).setStyle({width : Math.round(width)+'px'});
+	    }
+	});
+	slider.getComponent().on({
+	    drag: function(sl,thumb) {
+		var thumbIndex = Ext.Array.indexOf(thumbarr,thumb);
+		me.thumbAdjust(slider,thumb,thumbIndex);
+	    }
+	});
     },
     thumbAdjust : function(slider,thumb,i){
 	console.log(thumb)

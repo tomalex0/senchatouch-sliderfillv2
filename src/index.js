@@ -132,7 +132,7 @@ Ext.setup({
                     docked: 'bottom',
                     items: [
                         {
-                            text: 'Load Model',
+                            text: 'Load',
                             ui: 'round',
                             handler: function() {
                                 if (!formBase.user) {
@@ -152,7 +152,7 @@ Ext.setup({
                             }
                         },
                         {
-                            text: 'Change Multiple',
+                            text: 'Multiple',
                             handler: function() {
                                 form.getFields().multiple_slider.setValues([20,40,70]);
                             }
