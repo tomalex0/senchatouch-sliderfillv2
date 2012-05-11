@@ -46,7 +46,7 @@ Ext.define('Ext.plugin.SliderFill', {
 	cmp.on('updatedata',function(){
 	    console.log("updatedata");
 	});
-	cmp.on('change',function(slider,thumb){
+	cmp.on('change',function(slider,sl,thumb){
 	    var thumbarr_val = slider.getComponent().getThumbs();
             
 	    Ext.defer(function(){
@@ -87,13 +87,14 @@ Ext.define('Ext.plugin.SliderFill', {
 	});
 	slider.getComponent().on({
 	    drag: function(sl,thumb) {
+		console.log(thumb,"sdfs");
 		var thumbIndex = Ext.Array.indexOf(thumbarr,thumb);
 		me.thumbAdjust(slider,thumb,thumbIndex);
 	    }
 	});
     },
     thumbAdjust : function(slider,thumb,i){
-	console.log(thumb)
+	console.log(thumb,"thumb")
         var fill_space_id = "fill-"+thumb.getId(),
 	    thumbarr = slider.getComponent().getThumbs(),
             width  = thumb.translatableBehavior.translatable.x;
