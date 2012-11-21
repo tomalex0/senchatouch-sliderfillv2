@@ -1,6 +1,5 @@
 
 
-
 Ext.define('Override.slider.Slider', {
     override : 'Ext.slider.Slider',
 
@@ -40,7 +39,7 @@ Ext.define('Ext.plugin.SliderFill', {
 	console.log(thumbarr,"thumbarr");
 	
 	cmp.on('painted',function(slider){
-	    me.onSliderPainted(slider);
+	    me.onSliderPainted(cmp);
 	});
 	
 	cmp.on('updatedata',function(){
@@ -76,14 +75,14 @@ Ext.define('Ext.plugin.SliderFill', {
 	    var fill_space_id = "fill-"+item.id, width = item.translatableBehavior.translatable.x;
 	    console.log(fillCls[i],"blasdas" )
 	    Ext.DomHelper.append(sliderinner, {tag: 'div', id: fill_space_id, cls: 'x-slider-fill '+fillCls[i] });
-	    if(i > 0){
+	    /*if(i > 0){
 		var prev_thumb =  slider.getComponent().getThumb(i-1),
 		    prev_width =  prev_thumb.translatableBehavior.translatable.x,
 		    totalwidth = width - prev_width;
 		Ext.get(fill_space_id).setStyle({width : Math.round(totalwidth)+'px',left : prev_width+'px'});
 	    } else {
 		Ext.get(fill_space_id).setStyle({width : Math.round(width)+'px'});
-	    }
+	    }*/
 	});
 	slider.getComponent().on({
 	    drag: function(sl,thumb) {
