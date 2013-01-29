@@ -1,77 +1,74 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Senchatouch-v2-sliderfill by tomalex0</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Slider Fill</title>
+    <link rel="stylesheet" href="http://cdn.sencha.io/touch/sencha-touch-2.1.0/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="http://cdn.sencha.io/touch/sencha-touch-2.1.0/sencha-touch-all-debug.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/tomalex0/senchatouch-sliderfillv2/master/src/SliderFill.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/tomalex0/senchatouch-sliderfillv2/master/src/index.js"></script>
 
-  </head>
-  <body>
+    <style type="text/css">
+        .demos-loading {
+            background: rgba(0, 0, 0, .3) url(../resources/shared/loading.gif) center center no-repeat;
+            display: block;
+            width: 10em;
+            height: 10em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -5em;
+            margin-top: -5em;
+            -webkit-border-radius: .5em;
+            color: #fff;
+            text-shadow: #000 0 1px 1px;
+            text-align: center;
+            padding-top: 8em;
+            font-weight: bold;
+        }
 
-      <header>
-        <h1>Senchatouch-v2-sliderfill</h1>
-        <p>Implementing a background  color fill when  thumb is dragged or value is set.</p>
-      </header>
+        .x-android-2 input[type=password] {
+            position: relative;
+            top: -100px;
+            -webkit-transform: translateY(100px);
+        }
+        .x-slider-fill{
+            margin:0.925em;
+            position:absolute;
+            height:0.8em;
+            -webkit-border-radius:0.4em;
+            border-radius:0.4em;
+            margin-top:0.75em !important;
+            background-image:-webkit-gradient(linear, left top ,left bottom, from(#0A3A86), color-stop(.5, #4C8DE7), color-stop(.95, #6BABF5), to(#0A3A86));
+            z-index:1 ;
+        }
+        .x-slider-fill1{
+            background-image:-webkit-gradient(linear, left top ,left bottom, from(#8b1a05), color-stop(.5, #e35e4f), color-stop(.95, #e18080), to(#6f2c22));
+        }
+        .x-slider-fill2{
+            background-image:-webkit-gradient(linear, left top ,left bottom, from(#098855), color-stop(.5, #53df73), color-stop(.95, #81e0ac), to(#43652c));
+        }
+        .x-slider-fill3{
+            background-image:-webkit-gradient(linear, left top ,left bottom, from(#6c2458), color-stop(.5, #bf71c1), color-stop(.95, #c69bc6), to(#513a56));
+        }
+        .x-draggable {
+            z-index:2;
+        }
+    </style>
+</head>
+<body>
+  <script type="text/javascript">
 
-      <div id="banner">
-        <span id="logo"></span>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38057527-1']);
+  _gaq.push(['_trackPageview']);
 
-        <a href="https://github.com/tomalex0/SenchaTouch-V2-SliderFill" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/tomalex0/SenchaTouch-V2-SliderFill/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/tomalex0/SenchaTouch-V2-SliderFill/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/tomalex0">tomalex0</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+</script>
+</body>
 </html>
