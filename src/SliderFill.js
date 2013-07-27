@@ -31,19 +31,16 @@ Ext.define('Ext.plugin.SliderFill', {
 	fillCls : []
     },
     init: function(cmp) {
-        console.log("init");
-        console.log(cmp);
         var me = this,
             sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',cmp.element.dom)[0]);
             thumbarr = cmp.getComponent().getThumbs();
-	console.log(thumbarr,"thumbarr");
 	
 	cmp.on('painted',function(slider){
 	    me.onSliderPainted(cmp);
 	});
 	
 	cmp.on('updatedata',function(){
-	    console.log("updatedata");
+	    //console.log("updatedata");
 	});
 	cmp.on('change',function(slider,sl,thumb){
 	    var thumbarr_val = slider.getComponent().getThumbs();
@@ -68,12 +65,12 @@ Ext.define('Ext.plugin.SliderFill', {
             thumbarr = slider.getComponent().getThumbs(),
             fillCls  = me.getFillCls(),
             sliderinner = Ext.get(Ext.DomQuery.select('.x-slider-inner',slider.element.dom)[0]);
-	    console.log(me);
-	console.log(fillCls,"fillCls")
+	    //console.log(me);
+	    //console.log(fillCls,"fillCls")
 	Ext.each(thumbarr,function(item,i){
-	    console.log(item.translatableBehavior.translatable)
+	    //console.log(item.translatableBehavior.translatable)
 	    var fill_space_id = "fill-"+item.id, width = item.translatableBehavior.translatable.x;
-	    console.log(fillCls[i],"blasdas" )
+	    //console.log(fillCls[i],"blasdas" )
 	    Ext.DomHelper.append(sliderinner, {tag: 'div', id: fill_space_id, cls: 'x-slider-fill '+fillCls[i] });
 	    /*if(i > 0){
 		var prev_thumb =  slider.getComponent().getThumb(i-1),
@@ -86,20 +83,17 @@ Ext.define('Ext.plugin.SliderFill', {
 	});
 	slider.getComponent().on({
 	    drag: function(sl,thumb) {
-		console.log(thumb,"sdfs");
+		//console.log(thumb,"sdfs");
 		var thumbIndex = Ext.Array.indexOf(thumbarr,thumb);
 		me.thumbAdjust(slider,thumb,thumbIndex);
 	    }
 	});
     },
     thumbAdjust : function(slider,thumb,i){
-	console.log(thumb,"thumb")
         var fill_space_id = "fill-"+thumb.getId(),
 	    thumbarr = slider.getComponent().getThumbs(),
             width  = thumb.translatableBehavior.translatable.x;
-                console.log(width);
                 if(i == 0){
-                    console.log("if");
                     Ext.get(fill_space_id).setStyle({width : Math.round(width)+'px'});
                     if(slider.getComponent().getThumb(i+1)){
                         var next_thumb =  slider.getComponent().getThumb(i+1),
@@ -110,7 +104,6 @@ Ext.define('Ext.plugin.SliderFill', {
                     }
                   
                 } else if( i == ((thumbarr.length)-1)){
-                    console.log("else if");
                     if(slider.getComponent().getThumb(i-1)){
                     var prev_thumb =  slider.getComponent().getThumb(i-1),
                         prev_width =  prev_thumb.translatableBehavior.translatable.x,
@@ -118,8 +111,7 @@ Ext.define('Ext.plugin.SliderFill', {
                         Ext.get(fill_space_id).setStyle({width : Math.round(totalwidth)+'px',left : prev_width+'px'});
                     }
                 } else {
-                    console.log("else");
-                      var prev_thumb =  slider.getComponent().getThumb(i-1),next_thumb =  slider.getComponent().getThumb(i+1),
+                    var prev_thumb =  slider.getComponent().getThumb(i-1),next_thumb =  slider.getComponent().getThumb(i+1),
                         prev_width =  prev_thumb.translatableBehavior.translatable.x,
                         next_width =  next_thumb.translatableBehavior.translatable.x,
                         totalwidth = width - prev_width;

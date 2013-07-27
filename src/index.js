@@ -157,6 +157,12 @@ Ext.setup({
                                 form.getFields().multiple_slider.setValues([20,40,70]);
                             }
                         },
+                        {
+                            text: 'Single Slider',
+                            handler: function() {
+                                form.getFields().single_slider.setValue(40);
+                            }
+                        },
                         {xtype: 'spacer'},
                         {
                             text: 'Reset',
